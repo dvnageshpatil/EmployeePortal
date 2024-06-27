@@ -1,5 +1,6 @@
 package com.employee.controller;
 
+import com.employee.exceptions.EmployeeNotFoundExpection;
 import com.employee.model.Employee;
 import com.employee.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,7 @@ public class EmployeeController {
         return new ResponseEntity<>(service.getAllEmployees(), HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<?>getEmployee(@PathVariable Integer id){
+    public ResponseEntity<?>getEmployee(@PathVariable Integer id) throws EmployeeNotFoundExpection {
         log.info("Getting an employee::"+id);
         return new ResponseEntity<>(service.getEmployee(id), HttpStatus.OK);
     }

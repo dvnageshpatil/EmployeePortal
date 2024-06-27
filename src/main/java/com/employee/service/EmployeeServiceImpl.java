@@ -1,5 +1,6 @@
 package com.employee.service;
 
+import com.employee.exceptions.EmployeeNotFoundExpection;
 import com.employee.model.Employee;
 import com.employee.repository.EmployeeRepository;
 import com.employee.util.EmployeeUtil;
@@ -35,8 +36,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Employee getEmployee(Integer id) {
-        return repository.findById(id).orElseThrow(()->new RuntimeException("Employee not found with id::"+id));
+    public Employee getEmployee(Integer id) throws EmployeeNotFoundExpection {
+        return repository.findById(id).orElseThrow(()->new EmployeeNotFoundExpection("Employee not found with id::"+id));
     }
     @Override
     public List<Employee> getAllEmployees() {
